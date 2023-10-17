@@ -8,6 +8,22 @@ JDBC (Java DataBase Connectivity)
                    데이터베이스 연결을 설정하고 관리하는데 사용
           DriverManager : 데이터베이스 드라이버를 관리하고 
                           데이터베이스와 연결을 설정하는데 사용 
+
+   String url ="jdbc:oracle:thin:@localhost:1521:xe";
+   Connection con = DriverManager.getConnection(url,user,pssword);
+
+  jdbc:oracle:thin : JDBC URL의 프로토콜 부분을 나타냄 ( * 프로토콜: 데이터의 교환 방식을 정의하는 규칙 체계)
+                      Oracle JDBC 드라이버가 "thin" 연결 방식을 사용해서 데이터베이스에 연결할 것임을 나타냄
+
+  @localhost:1521:xe : 호스트,포트,Oracle서비스 이름 지정(SID)
+
+
+  Oracle JDBC 드라비어의 연결 유형
+            1. Thin : 데이터베이스에 연결하기 위해 클라이언트 시스템을 따로 설치할 필요 없음
+                      jdbc:oracle:thin:@<localhost>:<포트>:<SID>;
+            2. OCI  : 데이터베이스에 연결하기 위해 클라이언트 라이브러리를 따로 설치해야 함
+                      jdbc:oracle:oci:@<TNS_NAME>
+  
       
     2.Statement  : SQL 쿼리를 실행하는데 사용되는 인터페이스 / 동적쿼리를 실행할 때 사용 
       PreparedStatement : 미리 컴파일된 SQL 쿼리를 실행하는데 사용되는 인터페이스
@@ -17,6 +33,13 @@ JDBC (Java DataBase Connectivity)
                    
     3.ResultSet : SQL 쿼리 실행결과를 나타내는 인터페이스
                   결과 집합에서 데이터를 검색하고 처리하는데 사용
+
+
+
+    isBeforeFirst() : resultSet에 데이터가 없는 경우를 확인하기 위해 사용
+
+
+    
 
 
       예제코드 :
