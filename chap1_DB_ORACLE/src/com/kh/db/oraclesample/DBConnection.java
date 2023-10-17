@@ -12,10 +12,12 @@ public class DBConnection {
 	public static void main(String[] args) {
 		
 		//selectkhcafe();
-		SelectWhile();
+		//SelectWhile();
 		//SelectBank();
 		//Select2();
 		//selectIf();
+		InsertBank2();
+		
 		
 	}
 	
@@ -257,8 +259,68 @@ public class DBConnection {
 	}
 	
 	
+	static void InsertBank() {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "1234";
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction_date)"
+								  + "VALUES (?,?,?,?,?,?)";
+			PreparedStatement insertState = con.prepareStatement(insertQuery);
+			
+			insertState.setInt(1, 13);
+			insertState.setString(2, "123654785");
+			insertState.setString(3, "아자차");
+			insertState.setDouble(4, 1500.00);
+			insertState.setString(5, "kh");
+			insertState.setDate(6, Date.valueOf("2023-10-16"));
+		
+			
+			int rowsInsert = insertState.executeUpdate();
+			System.out.println(rowsInsert + "row 추가됨");
+			
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
+	static void InsertBank2() {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "1234";
 	
-	
+			try {
+				Connection con = DriverManager.getConnection(url, user, password);
+				String insertQuery = "INSERT INTO BANK (account_id, account_number, account_name, balance, branch_name, last_transaction_date)"
+						+ "VALUES (?,?,?,?,?,?)";
+				PreparedStatement insertState = con.prepareStatement(insertQuery);
+				
+				insertState.setInt(1, 14);
+				insertState.setString(2, "1593574562");
+				insertState.setString(3, "마바사");
+				insertState.setDouble(4, 1300.00);
+				insertState.setString(5, "kh");
+				insertState.setDate(6, Date.valueOf("2023-10-15"));
+				
+				int rowsInsert = insertState.executeUpdate();
+				System.out.println(rowsInsert + "row 추가 됨");
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	
 }
