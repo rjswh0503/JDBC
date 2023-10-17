@@ -39,8 +39,8 @@ public class DBConnection {
 			String branchName = result.getString("branch_Name");
 			
 			//3. java.sql import Date lastTransctionDAte 가져오기
-			Date LAST_TRANSACTION_DATE = result.getDate("LAST_TRANSACTION_DATE");
-			System.out.println("Account_ID : " + accountID + " Account_NAME : " + accountName + " balance : " + balance + " Account_NUMBER : " + accountNumber + " branch_Name : " + branchName + " last_transaction_date :" + LAST_TRANSACTION_DATE);
+			Date LAST_TRANSCTION_DATE = result.getDate("LAST_TRANSCTION_DATE");
+			System.out.println("Account_ID : " + accountID + " Account_NAME : " + accountName + " balance : " + balance + " Account_NUMBER : " + accountNumber + " branch_Name : " + branchName + " last_transction_date :" + LAST_TRANSCTION_DATE);
 
 			}
 			
