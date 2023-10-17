@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.sql.Date;
 
 public class DBConnection {
 
 	public static void main(String[] args) {
 		
-		selectkhcafe();
+		selectIf();
 		
 		
 	}
@@ -28,7 +29,7 @@ public class DBConnection {
 			con = DriverManager.getConnection(url, user, password);
 			System.out.println("데이터베이스 연결 성공");
 			//select 쿼리
-			String selectQuery = "SELECT * FROM menu";
+			String selectQuery = "SELECT * FROM MENU order by price";
 			PreparedStatement selectState = con.prepareStatement(selectQuery);
 			ResultSet result = selectState.executeQuery();
 			while(result.next()) {
@@ -94,4 +95,46 @@ public class DBConnection {
 				}
 	}
 
+	
+	static void selectIf() {
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "khbank";
+		String password = "1234";
+		Connection con = null;
+		
+		try {
+			con = DriverManager.getConnection(url, user, password);
+			String selectQuery = "SELECT * FROM BANK WHERE account_id =?";
+			PreparedStatement selectState = con.prepareStatement(selectQuery);
+			
+			//여기에 원화는 조건의 account_id 설정
+			int targetAID = 4;
+			
+			//조건 설정
+			selectState.setInt(1, targetAID);
+			
+			ResultSet result = selectState.executeQuery();
+			
+			if(result.next()) {
+				int a = result.getInt("account_id");
+				String b = result.getString("account_number");
+				String c = result.getString("account_name");
+				int d = result.getInt("balance");
+				String e = result.getString("branch_name");
+				Date f = result.getDate("last_transaction_date");
+				System.out.println("account_id :" + a + "  account_number :" + b + "  account_name :" + c + "  balance :" + d + "  branch_name :" + e + "  last_transaction_date :" + f);
+			}else {
+				System.out.println("조건에 해당하는 데이터가 없습니다.");
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 }

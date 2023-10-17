@@ -1,0 +1,58 @@
+Connection 을 사용하여 url, username, password를 연결해준다.
+
+String [select코드 담을 변수명] = "select 쿼리 작성"
+//만약에 뷰 또는 테이블을 찾을 수 없습니다. 가 나올 경우
+//SQL developer 방문하여 워크시트 실행 후 쿼리문 실행해보기 
+//commit 안했는지 확인해보기
+
+
+//jdbcurl에는 IP와 포트번호 SID가 들어가야함 
+
+//DataBase와 Connection 사용해서 연결
+Connection con = DriverManager.getConnection(jdbcurl,유저명,유저비밀번호)
+
+
+// 쿼리의 경우 "" 글자문을 넣기 때문에 String을 사용
+String SelectQuery = "select * from 테이블명";
+									//order by / where 절 추가 가능 DQL
+
+
+//PreparedStatement 사용해서 쿼리를 실행 할 준비를 함 
+PreparedStatement ps = con.PreparedStatement(selectQuery); 
+
+//ResultSet excuteQuery() 메서드를 호출하여 sql select 쿼리를 
+	실행하고 그 결과를 ResultSet 객체에 저장
+	ResultSet 결과 집합을 표현하는 객체
+	
+
+ResultSet에 담은 결과 집합을 next()를 사용하여 확인
+
+예제코드 : 
+	ResultSet result = 
+	while(result.next()){// 로 표기
+	}
+	ResultSet 객체에서 다음 행으로 이동하는 것을 표기한 것
+	next() 메서드는 다음 행이 있으면 true를 반환하고 그렇지 않으면 false를 반환
+	결과 집합에 더 많은 행이 있는 경우 행이 종료될 때까지 루프를 계속 실행
+	
+	
+	
+	while(result.next()){// 로 표기
+// 		예약어 지정할 변수명 = result.getInt("DB table에서 불러올 행 작성");
+			 XXX 변수명 = result.getXXX("DB table에서 불러올 행 작성"):
+			 
+		int accountID = result.getInt("account_id");
+							   (값을 추출할 때 예약어에 맞는 값을 넣고 추출)
+							   
+	}catch(){
+		try-catch 블록을 사용하여 쿼리 실행 중 발생할 수 있는 예외 처리
+		
+		
+		
+							   
+	 	
+	
+	
+	
+	
+	
