@@ -1,3 +1,16 @@
+
+SelectAll
+	selectAll 주로 여러행을 검색하는데 사용
+		조건없이 데이터베이스의 모든 데이터를 가져오는 경우
+			where절을 사용해서
+				일치하는 모든 행을 검색할 때 사용
+			결과는 주로 리스트나 배열 컬렉션 형식으로 반환
+				여러개의 결과를 반환할 수 있고,
+					결과가 없을 수 있음
+
+
+
+
 Connection 을 사용하여 url, username, password를 연결해준다.
 
 String [select코드 담을 변수명] = "select 쿼리 작성"
@@ -5,8 +18,8 @@ String [select코드 담을 변수명] = "select 쿼리 작성"
 //SQL developer 방문하여 워크시트 실행 후 쿼리문 실행해보기 
 //commit 안했는지 확인해보기
 
-
-//jdbcurl에는 IP와 포트번호 SID가 들어가야함 
+															         IP 주소   포트번호
+//jdbcurl에는 IP와 포트번호 SID가 들어가야함 Strung url = "jdbc:oracle:thin:@localhost:1521:xe;
 
 //DataBase와 Connection 사용해서 연결
 Connection con = DriverManager.getConnection(jdbcurl,유저명,유저비밀번호)
@@ -46,6 +59,8 @@ ResultSet에 담은 결과 집합을 next()를 사용하여 확인
 							   
 	}catch(){
 		try-catch 블록을 사용하여 쿼리 실행 중 발생할 수 있는 예외 처리
+		
+		
 		
 		
 		
