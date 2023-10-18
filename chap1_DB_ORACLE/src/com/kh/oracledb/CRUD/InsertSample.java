@@ -11,7 +11,7 @@ public class InsertSample {
 
 	public static void main(String[] args) {
 		
-		
+		Insertkhcafe1();
 		//InsertBank2();
 		//Insertkhcafe();
 		//Insertkhcafe1();
@@ -133,11 +133,11 @@ public class InsertSample {
 											+ "VALUES(?,?,?,?,?)";
 						PreparedStatement insertState = con.prepareStatement(insertQuery);
 						
-						insertState.setInt(1, 29);
+						insertState.setInt(1, 31);
 						insertState.setInt(2, 6);
-						insertState.setString(3, "초코 프라페");
-						insertState.setDouble(4, 3.9);
-						insertState.setString(5, "초콜릿이 듬뿍 들어간 프라페");
+						insertState.setString(3, "우유");
+						insertState.setDouble(4, 1.5);
+						insertState.setString(5, "맛있는 우유");
 						
 						int rowsInsert = insertState.executeUpdate();
 						System.out.println(rowsInsert + "추가 완료");
