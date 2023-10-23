@@ -3,7 +3,10 @@ package com.kh.VODAO.user2;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserDAO {
@@ -35,6 +38,34 @@ public class UserDAO {
 			e.printStackTrace();
 			return false;
 		}
+		
+	}
+	
+	
+	public List<UserVO> getAllUser(){
+		List<UserVO> users = new ArrayList<>();
+		String sql = "Select * from users";
+		
+		try {
+			PreparedStatement pt = connection.prepareStatement(sql);
+			ResultSet result = pt.executeQuery();
+			while(result.next()){
+				UserVO user = new UserVO();
+				user.setUser_id(result.getInt("user_id"));
+				user.setUsername(result.getString("userName"));
+				user.setUserpassword(result.getString("userpassword"));
+				user.setReg_Date(result.getDate("reg_date"));
+				users.add(user);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return users;
+		
 		
 	}
 
