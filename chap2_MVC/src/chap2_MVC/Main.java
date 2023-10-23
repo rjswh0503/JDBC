@@ -16,7 +16,7 @@ public class Main {
 		//view.updateMenu1();
 		//view.deleteCafe();
 		//view.deleteMenu();
-		view.deleteOrders();
+		//view.deleteOrders();
 		//controller.run();
 		
 	}
