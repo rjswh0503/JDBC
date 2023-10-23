@@ -51,6 +51,25 @@ public class UserMain {
 		
 	}
 	
+	public boolean checkEmail(String email) throws SQLException {
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String dbUserName = "khCafe";
+		String dbPassword = "153123";
+		
+		Connection con2 = DriverManager.getConnection(jdbcUrl, dbUserName, dbPassword);
+		String sql = "select  Count(*) from userInfo where email = ?";
+		PreparedStatement pt = con2.prepareStatement(sql);
+		pt.setString(1, email);
+		ResultSet result = pt.executeQuery();
+		
+		if(result.next()) {
+			int count = result.getInt(1);
+			return count > 0; //1 이상이면 true
+		}
+		
+		return false;
+	}
+	
 	
 	public void SelectScanner() {
 		
