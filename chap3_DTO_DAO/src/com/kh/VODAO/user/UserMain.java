@@ -16,8 +16,8 @@ public class UserMain {
 		//1. DataBase 연결 url, username, password 
 			UserMain um = new UserMain();
 			//um.SelectAll();
-			//um.InsertRun();
-			um.SelectScanner();
+			
+			//um.SelectScanner();
 			
 		
 	}
@@ -104,7 +104,7 @@ public class UserMain {
 				PreparedStatement st = cc.prepareStatement(sql);
 				st.setInt(1, userId);
 				st.setString(2, email);
-				ResultSet rs = st.executeQuery();
+				ResultSet rs = st.executeQuery(); 
 				
 				//select one
 				if(rs.next()) {
@@ -112,6 +112,7 @@ public class UserMain {
 					System.out.println("userName : " + rs.getString("userName"));
 					System.out.println("Email : " + rs.getString("email"));
 					System.out.println("Registration Date :" + rs.getDate("reg_Date"));
+					System.out.println("user PW : " + rs.getString("user_pw"));
 					System.out.println();
 					
 					
@@ -168,6 +169,7 @@ public class UserMain {
 				System.out.println("User Name : " + u.getUserName());
 				System.out.println("Email : " + u.getEmail());
 				System.out.println("Reg_Date : " + u.getRegDate());
+				System.out.println("user PW : " + u.getUser_pw());
 				
 				System.out.println();
 				
@@ -241,4 +243,58 @@ public class UserMain {
 
 	}
 
+	
+	public void insertRun() {
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		String dbUserName = "khcafe";
+		String dbPassWord = "153123";
+		
+		Connection connection;
+		try {
+			connection = DriverManager.getConnection(jdbcUrl, dbUserName, dbPassWord);
+			UserDAO userDao = new UserDAO(connection);
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.println("User ID :");
+			int userId = sc.nextInt();
+			
+			
+			System.out.print("아이디를 입력해주세요 :" );
+			String userName = sc.next();
+			
+			System.out.print("비밀번호를 입력해주세요. : ");
+			String userPassword = sc.next();
+			
+
+			
+			Date regDate = new Date();
+			
+			
+			UserVO newUser = new UserVO();
+			
+			newUser.setUser_id(userId);
+			newUser.setUserName(userName);
+			newUser.setUser_pw(userPassword);
+			newUser.setRegDate(regDate);
+			
+			
+			
+			if(userDao.createUser(newUser)) {
+				System.out.println("계정이 성공적으로 등록 되었습니다.");
+			}else {
+				System.out.println("계정 등록 실패 ");
+			}
+			
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+	}
+	
 }

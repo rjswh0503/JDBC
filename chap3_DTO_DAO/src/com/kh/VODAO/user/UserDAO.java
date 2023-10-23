@@ -19,8 +19,8 @@ public class UserDAO {
 	}
 						 /*파라미터 값 추가*/
 	public boolean createUser(UserVO user) {
-		String sql = "INSERT INTO USERINFO(user_id, userName, email, reg_date)"
-					+ "VALUES (?,?,?,?)";
+		String sql = "INSERT INTO USERINFO(user_id, userName, email, reg_date, user_pw)"
+					+ "VALUES (?,?,?,?,?)";
 		
 		try {
 			PreparedStatement st = connection.prepareStatement(sql);
@@ -28,6 +28,7 @@ public class UserDAO {
 			st.setString(2, user.getUserName());
 			st.setString(3, user.getEmail());
 			st.setDate(4, new Date(user.getRegDate().getTime()));
+			st.setString(5, user.getUser_pw());
 	
 			int rows = st.executeUpdate();
 			return rows > 0; // 값이 들어오면 0보다 커지므로 true가 됨 
@@ -62,6 +63,7 @@ public class UserDAO {
 				user.setUserName(result.getString("userName"));
 				user.setEmail(result.getString("email"));
 				user.setRegDate(result.getDate("reg_date"));
+				user.setUser_pw(result.getString("user_pw"));
 				users.add(user);
 			}
 			

@@ -7,6 +7,7 @@ public class UserVO {
 	private String userName; //사용자 이름
 	private String email; //사용자 이메일
 	private Date regDate; // 등록 날짜
+	private String user_pw;
 	
 	
 	
@@ -35,6 +36,13 @@ public class UserVO {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	
+	public String getUser_pw() {
+		return user_pw;
+	}
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 	
 	
