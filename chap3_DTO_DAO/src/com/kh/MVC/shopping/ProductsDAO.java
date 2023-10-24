@@ -1,4 +1,4 @@
-package com.kh.MVC.ProductsAdd;
+package com.kh.MVC.shopping;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class ProductsDAO {
 		List<ProductsDTO> products = new ArrayList<>();
 		
 		try {
-			PreparedStatement st = connection.prepareStatement("SELECT * FROM Products where product_id");
+			PreparedStatement st = connection.prepareStatement("SELECT * FROM Products where product_id = 1 or product_id = 9 or product_id = 2 or product_id = 5");
 			ResultSet result = st.executeQuery();
 			while(result.next()) {
 				int product_id = result.getInt("product_id");
