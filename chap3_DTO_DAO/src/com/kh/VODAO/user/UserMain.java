@@ -15,7 +15,7 @@ public class UserMain {
 	public static void main(String[] args) {
 		//1. DataBase ¿¬°á url, username, password 
 			UserMain um = new UserMain();
-			//um.SelectAll();
+			um.SelectAll();
 			
 			//um.SelectScanner();
 			
